@@ -2,7 +2,7 @@ import java.io.File
 import kotlin.math.max
 import kotlin.math.min
 
-class DayXX: Day("02") {
+class DayXX: Day("XX") {
 
     lateinit var data: List<String>
     override fun readData(){
