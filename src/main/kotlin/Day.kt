@@ -5,8 +5,11 @@ abstract class Day(val number: String) {
     abstract fun part1()
     abstract fun part2()
 
-    fun run(){
+    init {
         readData()
+    }
+
+    fun run(){
         part1()
         part2()
     }
@@ -16,7 +19,6 @@ abstract class Day(val number: String) {
             .readText(Charsets.UTF_8)
             .reader()
             .readLines()
-            .filter { it.isNotBlank() }
 
 
 }
