@@ -1,7 +1,8 @@
 class Day02 : Day("02") {
 
     private lateinit var data: List<Report>
-    override fun readData() {
+
+    init {
         data = getLines().map { line ->
             val levels = line.split(" ")
             Report(levels.map { it.toInt() })

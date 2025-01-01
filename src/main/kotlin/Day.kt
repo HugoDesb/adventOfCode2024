@@ -1,13 +1,7 @@
 abstract class Day(val number: String) {
 
-
-    abstract fun readData()
     abstract fun part1()
     abstract fun part2()
-
-    init {
-        readData()
-    }
 
     fun run(){
         part1()
@@ -19,6 +13,7 @@ abstract class Day(val number: String) {
             .readText(Charsets.UTF_8)
             .reader()
             .readLines()
+
 
 
 }

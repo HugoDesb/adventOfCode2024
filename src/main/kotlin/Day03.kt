@@ -4,8 +4,9 @@ import kotlin.math.min
 
 class Day03 : Day("03") {
 
-    lateinit var data: List<String>
-    override fun readData() {
+    val data: List<String>
+
+    init {
         data = getLines()
     }
 

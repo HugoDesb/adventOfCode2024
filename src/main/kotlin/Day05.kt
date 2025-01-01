@@ -22,8 +22,6 @@ class Day05: Day("05") {
         }
         updates = updatePagesLines.map { it.split(",").map(String::toInt)  }
     }
-    override fun readData(){
-    }
 
     override fun part1() {
         val sum = updates.filter(::isValid)

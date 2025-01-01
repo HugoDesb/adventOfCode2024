@@ -4,8 +4,9 @@ import kotlin.math.min
 
 class Day01: Day("01") {
 
-    lateinit var data: Pair<MutableList<Int>, MutableList<Int>>
-    override fun readData(){
+    val data: Pair<MutableList<Int>, MutableList<Int>>
+
+    init {
         val left: MutableList<Int> = mutableListOf()
         val right: MutableList<Int> = mutableListOf()
         getLines()
