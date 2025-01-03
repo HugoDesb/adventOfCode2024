@@ -28,6 +28,7 @@ class Day08 : Day("08") {
         return combinations
     }
 
+    // C = AB + B = B+ B-A
     fun getAntinodeLocation(antennas: Pair<Vector, Vector>) =
         antennas.second + antennas.second - antennas.first
 
@@ -45,7 +46,26 @@ class Day08 : Day("08") {
 
 
     override fun part2() {
+        val antinodes = mutableSetOf<Vector>()
+        var sum = 0
+        antennas.forEach { freq ->
+            getCombinations(freq.value).forEach {
+                var prevAntinode = it.second
+                var nextAntinode = getAntinodeLocation(it)
+                var tmpNode: Vector
 
+                while(nextAntinode in data){
+                    antinodes.add(nextAntinode)
+                    tmpNode = nextAntinode
+                    nextAntinode = getAntinodeLocation(prevAntinode to nextAntinode)
+                    prevAntinode = tmpNode
+                }
+            }
+        }
+        antinodes.apply {
+            addAll(antennas.values.flatten())
+        }
+        println("Sum part 2: ${antinodes.size}")
     }
 
 }
