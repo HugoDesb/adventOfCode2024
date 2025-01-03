@@ -40,19 +40,18 @@ data class Grid(
     }
 
     override fun toString(): String {
-//        val a = mutableListOf<String>()
-//        a.apply {  }
-//        val dataWithIndexes = mutableListOf(mutableListOf(' ','0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))
-//            .apply {
-//                addAll(list.mapIndexed {index, chars ->
-//                    mutableListOf(index.digitToChar()).apply { addAll(chars) }
-//                })
-//            }
-//
-//        return dataWithIndexes.joinToString(separator = "\n") {
-//            it.joinToString(separator = " ")
-//        }
-        return "grid tmp"
+        val a = mutableListOf<String>()
+        a.apply {  }
+        val dataWithIndexes = mutableListOf(mutableListOf(' ','0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))
+            .apply {
+                addAll(list.mapIndexed {index, chars ->
+                    mutableListOf(index.digitToChar()).apply { addAll(chars) }
+                })
+            }
+
+        return dataWithIndexes.joinToString(separator = "\n") {
+            it.joinToString(separator = " ")
+        }
     }
 
 
