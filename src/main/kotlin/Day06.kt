@@ -47,14 +47,15 @@ class Day06: Day("06") {
         var position = startPosition
         var direction = Vector(-1, 0)
 
-        var possibleObstructions = 0
+        var possibleObstructions = mutableListOf<Vector>()
 
         while(true){
             val nextPosition = position+direction
             println("------------------------")
             println(grid)
             if(nextPosition !in grid){
-                return possibleObstructions
+                println(possibleObstructions)
+                return possibleObstructions.size
             }
 
             if(grid.at(nextPosition) == '#'){
@@ -67,7 +68,10 @@ class Day06: Day("06") {
                 newTurnPoints.add(position)
                 val isLoopPossibleHere = isWalkLoop(position, direction.rotateRight(), newTurnPoints, grid.copyWithBlock(nextPosition))
 
-                if(isLoopPossibleHere) possibleObstructions++
+                if(isLoopPossibleHere) {
+
+                    possibleObstructions.add(nextPosition)
+                }
 
                 //step forward
                 grid[position] = '.'
@@ -98,7 +102,7 @@ class Day06: Day("06") {
             }
 
             if(grid.at(nextPosition) == '#'){
-                if(turnPoints.contains(position)){
+                if(turnPoints.contains(position) && position!=start){
                     return true
                 }else{
                     turnPoints.add(position)

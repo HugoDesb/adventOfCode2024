@@ -21,10 +21,14 @@ data class Grid(
     }
 
     fun copyWithBlock(at: Vector): Grid{
-        val newList = list.map { it.map { it }.toMutableList() }
-        val newGrid = Grid(newList)
+        val newGrid = this.copy()
         newGrid[at] = '#'
         return newGrid
+    }
+
+    fun copy(): Grid{
+        val newList = list.map { it.map { it1 -> it1 }.toMutableList() }
+        return Grid(newList)
     }
 
     fun <T> mapVectors(f : (Vector)->T): List<T> {
@@ -36,16 +40,19 @@ data class Grid(
     }
 
     override fun toString(): String {
-        val dataWithIndexes = mutableListOf(mutableListOf(' ','0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))
-            .apply {
-                addAll(list.mapIndexed {index, chars ->
-                    mutableListOf(index.digitToChar()).apply { addAll(chars) }
-                })
-            }
-
-        return dataWithIndexes.joinToString(separator = "\n") {
-            it.joinToString(separator = " ")
-        }
+//        val a = mutableListOf<String>()
+//        a.apply {  }
+//        val dataWithIndexes = mutableListOf(mutableListOf(' ','0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))
+//            .apply {
+//                addAll(list.mapIndexed {index, chars ->
+//                    mutableListOf(index.digitToChar()).apply { addAll(chars) }
+//                })
+//            }
+//
+//        return dataWithIndexes.joinToString(separator = "\n") {
+//            it.joinToString(separator = " ")
+//        }
+        return "grid tmp"
     }
 
 
