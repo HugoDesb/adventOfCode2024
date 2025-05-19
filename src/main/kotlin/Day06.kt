@@ -51,8 +51,6 @@ class Day06: Day("06") {
 
         while(true){
             val nextPosition = position+direction
-            println("------------------------")
-            println(grid)
             if(nextPosition !in grid){
                 println(possibleObstructions)
                 return possibleObstructions.size
@@ -65,8 +63,8 @@ class Day06: Day("06") {
 
             }else{
                 val newTurnPoints = turnPoints.toMutableList()
-                newTurnPoints.add(position)
-                val isLoopPossibleHere = isWalkLoop(position, direction.rotateRight(), newTurnPoints, grid.copyWithBlock(nextPosition))
+                //newTurnPoints.add(position)
+                val isLoopPossibleHere = isWalkLoop(position, direction.rotateRight(), grid.copyWithBlock(nextPosition))
 
                 if(isLoopPossibleHere) {
 
@@ -86,29 +84,26 @@ class Day06: Day("06") {
      * In that case the method returns true
      *
      * The walk starts at the [start] position, and starts walking in the direction [direction]. The method determines
-     * it is stuck in a loop if a turn point is shared with the [turnPoints] list
+     * it is stuck in a loop if next position is the start position
      *
      */
-    private fun isWalkLoop(start: Vector, startDir: Vector, turnPoints: MutableList<Vector>, grid: Grid): Boolean{
+    private fun isWalkLoop(start: Vector, startDir: Vector, grid: Grid): Boolean{
 
         var position = start
         var direction = startDir
-
+        var nextPosition: Vector
 
         while (true){
-            val nextPosition = position+direction
-            if(nextPosition !in grid){
-                return false // if we get out of the grid, then there's no loop
-            }
+            nextPosition = position+direction
+
+            if(nextPosition !in grid) return false
+
+            if(nextPosition == start) return true
 
             if(grid.at(nextPosition) == '#'){
-                if(turnPoints.contains(position) && position!=start){
-                    return true
-                }else{
-                    turnPoints.add(position)
-                    direction = direction.rotateRight()
-                    grid[position] = direction.getChar()
-                }
+                //turn
+                direction = direction.rotateRight()
+                grid[position] = direction.getChar()
             }else{
                 //step forward
                 grid[position] = '.'
